@@ -30,9 +30,3 @@ backup_remote_connection_ssh_options: ''
 # Add your server's host key to ensure seamless backup functionality.
 backup_remote_host_name: ''
 backup_remote_host_key: ''
-
-# MySQL database backup options.
-backup_mysql: true
-backup_mysql_user: dbdump
-backup_mysql_password: password
-backup_mysql_credential_file: ''

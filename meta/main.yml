@@ -3,9 +3,9 @@ dependencies: []
 
 galaxy_info:
   role_name: backup
-  author: geerlingguy
-  description: Backup for Simple Servers.
-  company: "Midwestern Mac, LLC"
+  author: Jan Jurca
+  description: Simple rsync backup.
+  company: "No company"
   license: "license (BSD, MIT)"
   min_ansible_version: 2.4
   platforms:
