@@ -4,7 +4,7 @@
 #
 # Common variables.
 REMOTE="{{ backup_remote }}"
-RSYNC_OPTIONS=" -az --no-owner --no-group --recursive --chmod=a+r,a+w,a+X"
+RSYNC_OPTIONS=" -avz"
 RSYNC_C="/usr/bin/rsync ${RSYNC_OPTIONS}"
 
 HOSTNAME=$(hostname)
