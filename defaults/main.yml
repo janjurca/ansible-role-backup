@@ -1,12 +1,7 @@
 ---
 # Backup cron job options.
-backup_cron_job_state: present
 backup_hour: "3"
 backup_minute: "00"
 backup_day: "*"
 backup_month: "*"
 backup_weekday: "*"
-
-
-# Path to where backups configuration will be stored.
-backup_path: /opt/backup.sh

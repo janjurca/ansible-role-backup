@@ -1,8 +1,15 @@
 ---
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+
 - name: Copy backup script to server.
   template:
     src: backup.sh.j2
-    dest: "{{ backup_path }}/backup.sh"
+    dest: "/opt/backup.sh"
     mode: 0744
 
 
@@ -11,5 +18,7 @@
     name: "Backup cron job"
     minute: "{{ backup_minute }}"
     hour: "{{ backup_hour }}"
-    job: "{{ backup_path }}/backup.sh"
-    state: "{{ backup_cron_job_state }}"
+    day: "{{ backup_day }}"
+    month: "{{ backup_month }}"
+    weekday: "{{ backup_weekday }}"
+    job: "/opt/backup.sh"

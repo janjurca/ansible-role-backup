@@ -1,0 +1,14 @@
+---
+
+- name: Check if vars are defined properly
+  ansible.builtin.assert:
+    that:
+      - backup_remote is defined
+      - backup_remote is string
+      - backup_remote_path is defined
+      - backup_remote_path is string
+      - backup_directories is defined
+      - backup_directories is iterable
+      - rsync_user is defined
+      - rsync_user is string
+    quiet: yes
