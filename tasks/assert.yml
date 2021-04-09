@@ -11,4 +11,7 @@
       - backup_directories is iterable
       - rsync_user is defined
       - rsync_user is string
+      - rsync_password is defined
+      - rsync_password is string
+
     quiet: yes

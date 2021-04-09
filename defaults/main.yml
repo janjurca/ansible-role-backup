@@ -5,3 +5,7 @@ backup_minute: "00"
 backup_day: "*"
 backup_month: "*"
 backup_weekday: "*"
+
+backup_directories: []
+
+backup_volumes: false
