@@ -23,7 +23,7 @@ rm $FILE
 
 {% if backup_volumes is true %}
 
-docker volume ls --format "{{.Name}}" | while read vol
+docker volume ls --format "{% raw %}{{.Name}}{% endraw %}" | while read vol
 do
 
   echo $vol;
