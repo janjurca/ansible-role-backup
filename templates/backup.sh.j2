@@ -36,7 +36,6 @@ do
   rm /tmp/$FILE
   docker stop backup_${TIMESTAMP}
   docker rm backup_${TIMESTAMP}
-  break;
 done
 
 {% endif %}

@@ -5,6 +5,10 @@
   run_once: yes
   delegate_to: localhost
 
+- name: Install sshpass and rsync
+  package:
+    name: ["rsync", "sshpass"]
+    state: present
 
 - name: Copy backup script to server.
   template:
