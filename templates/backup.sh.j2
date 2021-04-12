@@ -5,7 +5,7 @@
 # Common variables.
 REMOTE="{{ backup_remote }}"
 RSYNC_OPTIONS=" -avz"
-RSYNC_C="/usr/bin/rsync ${RSYNC_OPTIONS}"
+RSYNC_C="RSYNC_PASSWORD=\"{{ rsync_password }}\" /usr/bin/rsync ${RSYNC_OPTIONS}"
 
 HOSTNAME=$(hostname)
 TIME=$(date +%H:%M:%S_%d_%m_%Y)
@@ -17,7 +17,7 @@ TIMESTAMP=$(date +%s)
 FILE=${TIME}_${HOSTNAME}_{{directory}}.tar.xz
 #tar -cvJf {{ directory }} | xz -9 -c - > $FILE
 tar -cvJf $FILE {{ directory }}
-$RSYNC_C -e 'sshpass -p {{ rsync_password }} ssh -p22' $FILE {{ rsync_user }}@$REMOTE::{{ backup_remote_path }}/
+$RSYNC_C $FILE {{ rsync_user }}@$REMOTE::{{ backup_remote_path }}/
 rm $FILE
 {% endfor %}
 
@@ -32,7 +32,7 @@ do
   docker run --name backup_${TIMESTAMP} -v $vol:/mnt ubuntu bash -c "tar -czvf /tmp/${FILE} /mnt "
   docker start backup_${TIMESTAMP}
   docker cp backup_${TIMESTAMP}:/tmp/${FILE} /tmp/${FILE}
-  $RSYNC_C -e 'sshpass -p {{ rsync_password }} ssh -p22' /tmp/${FILE} {{ rsync_user }}@$REMOTE::{{ backup_remote_path }}/
+  $RSYNC_C /tmp/${FILE} {{ rsync_user }}@$REMOTE::{{ backup_remote_path }}/
   rm /tmp/$FILE
   docker stop backup_${TIMESTAMP}
   docker rm backup_${TIMESTAMP}
