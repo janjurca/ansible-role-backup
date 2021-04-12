@@ -15,7 +15,7 @@ TIMESTAMP=$(date +%s)
 # Backup individual directories.
 {% for directory in backup_directories %}
 
-FILE=${TIMESTAMP}_${HOSTNAME}_$(echo {{directory}} | tr '/' '_').tar.xz
+FILE=${TIMESTAMP}_${HOSTNAME}_$(echo {{directory}} | tr '/' '_').tar.gz
 #tar -cvJf {{ directory }} | xz -9 -c - > $FILE
 tar -cvJf $FILE {{ directory }}
 $RSYNC_C $FILE {{ rsync_user }}@$REMOTE::{{ backup_remote_path }}/$HOSTNAME/
