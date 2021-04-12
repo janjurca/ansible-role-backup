@@ -18,7 +18,7 @@ TIMESTAMP=$(date +%s)
 FILE=${TIME}_${HOSTNAME}_{{directory}}.tar.xz
 #tar -cvJf {{ directory }} | xz -9 -c - > $FILE
 tar -cvJf $FILE {{ directory }}
-$RSYNC_C $FILE {{ rsync_user }}@$REMOTE::{{ backup_remote_path }}/
+$RSYNC_C $FILE {{ rsync_user }}@$REMOTE::{{ backup_remote_path }}/$REMOTE/
 rm $FILE
 {% endfor %}
 
@@ -33,7 +33,7 @@ do
   docker run --name backup_${TIMESTAMP} -v $vol:/mnt ubuntu bash -c "tar -czvf /tmp/${FILE} /mnt "
   docker start backup_${TIMESTAMP}
   docker cp backup_${TIMESTAMP}:/tmp/${FILE} /tmp/${FILE}
-  $RSYNC_C /tmp/${FILE} {{ rsync_user }}@$REMOTE::{{ backup_remote_path }}/
+  $RSYNC_C /tmp/${FILE} {{ rsync_user }}@$REMOTE::{{ backup_remote_path }}/$REMOTE/volume_$vol/
   rm /tmp/$FILE
   docker stop backup_${TIMESTAMP}
   docker rm backup_${TIMESTAMP}
