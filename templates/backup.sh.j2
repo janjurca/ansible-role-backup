@@ -6,7 +6,7 @@
 REMOTE="{{ backup_remote }}"
 RSYNC_OPTIONS=" -avz"
 RSYNC_C="/usr/bin/rsync ${RSYNC_OPTIONS}"
-export RSYNC_PASSWORD=\"{{ rsync_password }}\"
+export RSYNC_PASSWORD="{{ rsync_password }}"
 
 HOSTNAME=$(hostname)
 TIME=$(date +%H:%M:%S_%d_%m_%Y)
