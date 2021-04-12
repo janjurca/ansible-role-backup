@@ -33,7 +33,7 @@ do
   docker run --name backup_${TIMESTAMP} -v $vol:/mnt ubuntu bash -c "tar -czvf /tmp/${FILE} /mnt "
   #docker start backup_${TIMESTAMP}
   docker cp backup_${TIMESTAMP}:/tmp/${FILE} /tmp/${FILE}
-  $RSYNC_C /tmp/${FILE} {{ rsync_user }}@$REMOTE::{{ backup_remote_path }}/$HOSTNAME/volume_$vol/
+  $RSYNC_C /tmp/${FILE} {{ rsync_user }}@$REMOTE::{{ backup_remote_path }}/$HOSTNAME/
   rm /tmp/$FILE
   docker stop backup_${TIMESTAMP}
   docker rm backup_${TIMESTAMP}
