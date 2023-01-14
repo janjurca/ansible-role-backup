@@ -5,6 +5,7 @@ backup_minute: "0"
 backup_day: "*"
 backup_month: "*"
 backup_weekday: "*"
+backup_cron_job_state: present
 
 
 
