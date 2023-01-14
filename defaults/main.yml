@@ -6,6 +6,34 @@ backup_day: "*"
 backup_month: "*"
 backup_weekday: "*"
 
-backup_directories: []
 
-backup_volumes: false
+
+# Path to where backups configuration will be stored.
+backup_path: /home/{{ backup_user }}/backups
+
+# Directories to back up. {{ backup_user }} must have read access to these dirs.
+backup_directories:
+  - /home/{{ backup_user }}/domains
+  - /home/{{ backup_user }}/repositories
+
+# Items to exclude from backups. (Use rsync 'excludes' file syntax.)
+backup_exclude_items:
+  - .DS_Store
+  - cache
+  - tmp
+
+# Options to control where the backup is delivered.
+backup_identifier: id_here
+backup_remote_connection: user@backup.example.com
+backup_remote_base_path: "~/backups"
+backup_remote_connection_ssh_options: ''
+
+# Add your server's host key to ensure seamless backup functionality.
+backup_remote_host_name: ''
+backup_remote_host_key: ''
+
+# MySQL database backup options.
+backup_mysql: false
+backup_mysql_user: dbdump
+backup_mysql_password: password
+backup_mysql_credential_file: ''

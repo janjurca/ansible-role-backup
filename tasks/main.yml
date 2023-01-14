@@ -25,4 +25,18 @@
     day: "{{ backup_day }}"
     month: "{{ backup_month }}"
     weekday: "{{ backup_weekday }}"
-    job: "/opt/backup.sh"
+    user: "{{ backup_user }}"
+    job: "{{ backup_path }}/backup.sh"
+    state: "{{ backup_cron_job_state }}"
+
+- name: Add backup remote host key to server.
+  known_hosts:
+    path: "/etc/ssh/ssh_known_hosts"
+    name: "{{ backup_remote_host_name }}"
+    key: "{{ backup_remote_host_name }} {{ backup_remote_host_key }}"
+  when:
+    - backup_remote_host_name
+    - backup_remote_host_key
+
+- include_tasks: databases.yml
+  when: backup_mysql
